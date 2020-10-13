@@ -26,5 +26,7 @@ deb: dist
 	cd ./build/$(_appname)-$(_version) && debmake
 	cp -r ./debian/* ./build/$(_appname)-$(_version)/debian
 	chmod +x ./build/$(_appname)-$(_version)/debian/postinst
+	chmod +x ./build/$(_appname)-$(_version)/debian/prerm
+	chmod +x ./build/$(_appname)-$(_version)/debian/postrm
 	cd ./build/$(_appname)-$(_version) && debuild -us -uc
 	@echo "Package created to `realpath ./build/$(_appname)_$(_version)-1_$(_arch).deb`"

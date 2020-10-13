@@ -9,5 +9,5 @@ Homepage: <insert the upstream URL, if relevant>
 Package: rpi-chromium-kiosk
 Architecture: all
 Multi-Arch: foreign
-Depends: systemd, chromium-browser
+Depends: systemd, chromium-browser, unclutter
 Description: Provides a Kiosk based on Chromium Browser to execute custom web apps inside a restricted environment.

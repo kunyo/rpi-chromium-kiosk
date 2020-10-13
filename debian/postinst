@@ -9,6 +9,16 @@ if [ -z "$XAUTHORITY" ]; then
     XAUTHORITY=/home/pi/.Xauthority
 fi
 
+test -d "/home/pi/.config/lxsession/LXDE-pi/" \
+    || mkdir -p "/home/pi/.config/lxsession/LXDE-pi/"
+
+test -f "/home/pi/.config/lxsession/LXDE-pi/autostart" \
+    && mv "/home/pi/.config/lxsession/LXDE-pi/autostart" \
+        "/home/pi/.config/lxsession/LXDE-pi/autostart.orig"
+
+echo -e "@xset s off\n@xset -dpms\n@xset s noblank\n@unclutter -idle 0.1" \
+    > "/home/pi/.config/lxsession/LXDE-pi/autostart"
+
 while [ -z "$RPI_KIOSK_URL" ]; do
     read -p "Enter Kiosk URL: " RPI_KIOSK_URL
 done
@@ -28,15 +38,8 @@ do
     export $i
 done
 
-# Disable screen saver
-xset s off
-
-# Disable Display Power Management Signaling
-xset -dpms
-
-# Disable screen blanking
-xset s noblank
-
 systemctl daemon-reload
 systemctl enable rpi-chromium-kiosk
+systemctl restart lightdm
+sleep 5
 systemctl start rpi-chromium-kiosk
