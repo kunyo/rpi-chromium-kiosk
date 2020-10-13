@@ -16,7 +16,7 @@ test -f "/home/pi/.config/lxsession/LXDE-pi/autostart" \
     && mv "/home/pi/.config/lxsession/LXDE-pi/autostart" \
         "/home/pi/.config/lxsession/LXDE-pi/autostart.orig"
 
-echo -e "@xset s off\n@xset -dpms\n@xset s noblank\n@unclutter -idle 0.1" \
+echo "@xset s off\n@xset -dpms\n@xset s noblank\n@unclutter -idle 0.1" \
     > "/home/pi/.config/lxsession/LXDE-pi/autostart"
 
 while [ -z "$RPI_KIOSK_URL" ]; do
