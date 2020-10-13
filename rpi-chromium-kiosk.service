@@ -5,7 +5,7 @@ After=graphical.target
 
 [Service]
 EnvironmentFile=/etc/rpi-chromium-kiosk/env
-Exec=/usr/bin/chromium-browser --disable-session-crashed-bubble --noerrdialogs --disable-infobars --kiosk "${RPI_KIOSK_URL}"
+ExecStart=/usr/bin/chromium-browser --disable-session-crashed-bubble --noerrdialogs --disable-infobars --kiosk "${RPI_KIOSK_URL}"
 Restart=on-abort
 User=pi
 Group=pi
