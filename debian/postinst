@@ -1,0 +1,42 @@
+#!/bin/sh
+set -ex
+
+if [ -z "$DISPLAY" ]; then
+    DISPLAY=:0.0
+fi
+
+if [ -z "$XAUTHORITY" ]; then
+    XAUTHORITY=/home/pi/.Xauthority
+fi
+
+while [ -z "$RPI_KIOSK_URL" ]; do
+    read -p "Enter Kiosk URL: " RPI_KIOSK_URL
+done
+
+echo "DISPLAY      : $DISPLAY"
+echo "RPI_KIOSK_URL: $RPI_KIOSK_URL"
+echo "XAUTHORITY   : $XAUTHORITY"
+
+test -d /etc/rpi-chromium-kiosk/ || mkdir /etc/rpi-chromium-kiosk/
+test -f /etc/rpi-chromium-kiosk/env && rm /etc/rpi-chromium-kiosk/env
+echo "DISPLAY=$DISPLAY" >> /etc/rpi-chromium-kiosk/env
+echo "XAUTHORITY=$XAUTHORITY" >> /etc/rpi-chromium-kiosk/env
+echo "RPI_KIOSK_URL=$RPI_KIOSK_URL" >> /etc/rpi-chromium-kiosk/env
+
+for i in `cat /etc/rpi-chromium-kiosk/env`
+do
+    export $i
+done
+
+# Disable screen saver
+xset s off
+
+# Disable Display Power Management Signaling
+xset -dpms
+
+# Disable screen blanking
+xset s noblank
+
+systemctl daemon-reload
+systemctl enable rpi-chromium-kiosk
+systemctl start rpi-chromium-kiosk

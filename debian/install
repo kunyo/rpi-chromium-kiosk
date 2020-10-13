@@ -1,0 +1,3 @@
+LICENSE.txt                /usr/share/doc/rpi-chromium-kiosk/
+README.md                  /usr/share/doc/rpi-chromium-kiosk/
+rpi-chromium-kiosk.service /lib/systemd/system/

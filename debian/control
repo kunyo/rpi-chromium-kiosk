@@ -1,0 +1,13 @@
+Source: rpi-chromium-kiosk
+Section: unknown
+Priority: optional
+Maintainer: Stefano Cocchi <info@xp3riment.net>
+Build-Depends: debhelper-compat (= 12)
+Standards-Version: 4.5.0
+Homepage: <insert the upstream URL, if relevant>
+
+Package: rpi-chromium-kiosk
+Architecture: all
+Multi-Arch: foreign
+Depends: systemd, chromium-browser
+Description: Provides a Kiosk based on Chromium Browser to execute custom web apps inside a restricted environment.

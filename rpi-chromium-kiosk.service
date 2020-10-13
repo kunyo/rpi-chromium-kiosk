@@ -1,0 +1,14 @@
+[Unit]
+Description=Raspberry PI Chromium Kiosk 
+Requires=graphical.target
+After=graphical.target
+
+[Service]
+EnvironmentFile=/etc/rpi-chromium-kiosk/env
+ExecStart=/usr/bin/chromium-browser --noerrdialogs --disable-infobars --kiosk "${RPI_KIOSK_URL}"
+Restart=on-abort
+User=pi
+Group=pi
+
+[Install]
+WantedBy=graphical.target
