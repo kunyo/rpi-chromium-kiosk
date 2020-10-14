@@ -1,4 +1,8 @@
 # Raspberry PI Chromium Kiosk
+## Build
+```
+make deb
+```
 ## Install
 ```
 DISPLAY=:0.0 \
